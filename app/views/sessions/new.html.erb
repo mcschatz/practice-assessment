@@ -1,10 +1,16 @@
-<%= form_for :login, url: login_path do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit "Login" %>
-  <%= link_to "Not registered? Sign up here.", new_user_path %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col s10 center">
+    <%= form_for :login, url: login_path do |f| %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+      <%= f.submit "Login" %>
+      <%= link_to "Not registered? Sign up here.", new_user_path %>
+    <% end %>
+    </div>
+  </div>
+</div>
