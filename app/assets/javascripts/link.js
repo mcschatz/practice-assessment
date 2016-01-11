@@ -1,6 +1,5 @@
 $(document).ready(function () {
   getLinks();
-  // deleteIdea();
   searchLinks();
 });
 
@@ -22,36 +21,15 @@ function renderLinks(link) {
     + "</p></span>"
     + "<p contentEditable='true' class='link-url'>"
     + link.url
-    + "</p><p class='status'>Has this been read? "
+    + "</p><p class='status'>Mark as "
     + link.read_status
     + "</p>"
-    + "</div></div>"
+    + "<i class='material-icons' id='change-status'>thumb_up</i></div></div>"
   )
   editTitle();
   editUrl();
-  // markRead();
-  // decreaseQuality();
+  changeStatus();
 };
-
-// function deleteIdea() {
-//   $('#ideas-list').delegate('#delete-idea', 'click', function(){
-//     var $idea = $(this).closest('.idea')
-
-//     $.ajax({
-//       type: 'DELETE',
-//       url:  '/api/v1/ideas/'
-//       + $idea.attr('data-id')
-//       + '.json',
-//       success: function(){
-//         $idea.remove()
-//       },
-//       error: function(){
-//         $idea.remove()
-//         console.log('This Idea has already deleted')
-//       }
-//     })
-//   })
-// }
 
 function searchLinks() {
   $('#search').keyup(function() {
@@ -135,20 +113,24 @@ function updateUrl(link, url){
   $(link).find('.link-body').html(url);
 }
 
-function markRead() {
-  $('#mark-read').on('click', function(event){
+function changeStatus() {
+  $('#change-status').on('click', function(event){
     var $link = $(this).closest('.link');
     var $read_status = $($link).attr('data-status');
-
+    var changeMap = {
+      unread: "read",
+      read: "unread",
+    }
+    debugger
     var linkParams = {
       link: {
-        read_status: true
+        read_status: changeMap[$read_status]
       }
     }
 
     $.ajax({
       type: 'PUT',
-      url: '/api/v1/ideas/'
+      url: '/api/v1/links/'
       + $link.attr('data-id')
       + '.json',
       data: linkParams,
@@ -163,32 +145,3 @@ function updateStatus(link, status){
   $(link).find('.read_status').html('Status: ' + status);
   $(link).attr('data-status', status);
 }
-
-// function decreaseQuality() {
-//   $('#decrease-quality').on('click', function(event){
-//     var $idea = $(this).closest('.idea');
-//     var $quality = $($idea).attr('data-quality');
-//     var thumbsDownMap = {
-//       Genius: "Plausible",
-//       Plausible: "Swill",
-//       Swill: "Swill"
-//     }
-
-//     var ideaParams = {
-//       idea: {
-//         quality: thumbsDownMap[$quality]
-//       }
-//     }
-
-//     $.ajax({
-//       type: 'PUT',
-//       url: '/api/v1/ideas/'
-//       + $idea.attr('data-id')
-//       + '.json',
-//       data: ideaParams,
-//       success: function(idea){
-//         updateQuality($idea, idea.quality);
-//       }
-//     });
-//   });
-// }

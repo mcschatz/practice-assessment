@@ -23,31 +23,18 @@ $highlight-text-color: #4db6ac;
   font-weight: bold;
 }
 
-#increase-quality:hover {
+#change-status:hover {
   color: $highlight-text-color;
 }
 
-#increase-quality {
+#change-status {
   padding-right: 15px;
   padding-top: 10px;
-}
-
-#decrease-quality {
-  padding-right: 850px;
-}
-
-#delete-link {
-  color: $highlight-text-color;
 }
 
 .nav-wrapper {
   background-color: #eceff1;
   color: black;
-}
-
-
-#decrease-quality:hover {
-  color: $highlight-text-color;
 }
 
 body {
