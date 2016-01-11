@@ -6,7 +6,6 @@ class Api::V1::Links::LinksController < ApplicationController
   end
 
   def update
-    # binding.pry
     @link = Link.update(params[:id], link_params)
     respond_with @link, json: @link
   end

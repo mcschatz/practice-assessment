@@ -1,7 +1,7 @@
 $(document).ready(function () {
   getLinks();
   // deleteIdea();
-  // searchIdeas();
+  searchLinks();
 });
 
 function getLinks(){
@@ -28,7 +28,7 @@ function renderLinks(link) {
     + "</div></div>"
   )
   editTitle();
-  // editUrl();
+  editUrl();
   // markRead();
   // decreaseQuality();
 };
@@ -53,19 +53,19 @@ function renderLinks(link) {
 //   })
 // }
 
-// function searchIdeas() {
-//   $('#search').keyup(function() {
-//     var input = $('#search').val().toLowerCase();
+function searchLinks() {
+  $('#search').keyup(function() {
+    var input = $('#search').val().toLowerCase();
 
-//     $('.idea').each(function (index, idea) {
-//       var title = $(idea).find('p').text().toLowerCase();
-//       var body = $(idea).find('p').text().toLowerCase();
+    $('.link').each(function (index, link) {
+      var title = $(link).find('p').text().toLowerCase();
+      var body = $(link).find('p').text().toLowerCase();
 
-//       var isMatching = (title + body).indexOf(input) !== -1;
-//       $(idea).toggle(isMatching);
-//     });
-//   });
-// }
+      var isMatching = (title + body).indexOf(input) !== -1;
+      $(link).toggle(isMatching);
+    });
+  });
+}
 
 function editTitle() {
   $('.link-title').keydown(function (event) {
@@ -78,7 +78,7 @@ function editTitle() {
           title: $input
         }
       }
-      debugger
+
       $.ajax({
         type: 'PUT',
         url:  '/api/v1/links/'
@@ -101,39 +101,39 @@ function updateTitle(link, title){
   $(link).find('.link-title').html(title);
 }
 
-// function editBody() {
-//   $('.idea-body').keydown(function (event) {
-//     if(event.keyCode == 13) {
-//       event.preventDefault();
-//       var $input = event.currentTarget.textContent;
-//       var $idea = $(this).closest('.idea');
-//       var ideaParams  = {
-//         idea: {
-//           body: $input
-//         }
-//       }
+function editUrl() {
+  $('.link-url').keydown(function (event) {
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      var $input = event.currentTarget.textContent;
+      var $link = $(this).closest('.link');
+      var linkParams  = {
+        link: {
+          url: $input
+        }
+      }
 
-//       $.ajax({
-//         type: 'PUT',
-//         url:  '/api/v1/ideas/'
-//         + $idea.attr('data-id')
-//         + '.json',
-//         data: ideaParams,
-//         success: function(idea){
-//           $(event.target).blur();
-//           updateBody($idea, idea.body);
-//         },
-//         error: function(){
-//           console.log('There was an error with your input. Try again.')
-//         }
-//       })
-//     }
-//   })
-// }
+      $.ajax({
+        type: 'PUT',
+        url:  '/api/v1/links/'
+        + $link.attr('data-id')
+        + '.json',
+        data: linkParams,
+        success: function(link){
+          $(event.target).blur();
+          updateUrl($link, link.url);
+        },
+        error: function(){
+          console.log('There was an error with your input. Try again.')
+        }
+      })
+    }
+  })
+}
 
-// function updateBody(idea, body){
-//   $(idea).find('.idea-body').html(body);
-// }
+function updateUrl(link, url){
+  $(link).find('.link-body').html(url);
+}
 
 function markRead() {
   $('#mark-read').on('click', function(event){
