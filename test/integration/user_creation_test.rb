@@ -5,8 +5,8 @@ class UserCreationTest < ActionDispatch::IntegrationTest
 
   test 'a user can be created' do
     visit root_path
-    click_button "Sign Up"
-    assert_current_path(user_path)
+    click_link "Sign Up"
+    assert_current_path(new_user_path)
 
     fill_in "Username", with: "mimi"
     fill_in "Password", with: "password"
