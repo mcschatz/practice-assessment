@@ -5,7 +5,9 @@
   <%= f.text_field :username %>
 
   <%= f.label :password %>
-  <%= f.text_field :password %>
+  <%= f.password_field :password, help: "Must be 8 Characters" %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
 
   <%= f.submit "Create Account" %>
 <% end %>
