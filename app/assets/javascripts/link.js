@@ -13,8 +13,8 @@ function getLinks(){
 };
 
 function renderLinks(link) {
-  $('#link-list').prepend(
-    "<div class='card idea' data-id='" + link.id
+  $('#links-list').prepend(
+    "<div class='card link' data-id='" + link.id
     + "' data-status='" + link.read_status
     + "'><div class='card-content'>"
     + "<span class='card-title'><p contentEditable='true' class='link-title'>"
@@ -22,12 +22,14 @@ function renderLinks(link) {
     + "</p></span>"
     + "<p contentEditable='true' class='link-url'>"
     + link.url
+    + "</p><p class='status'>Has this been read? "
+    + link.read_status
     + "</p>"
-    + "</div>"
+    + "</div></div>"
   )
-  // editTitle();
-  // editBody();
-  // increaseQuality();
+  editTitle();
+  // editUrl();
+  // markRead();
   // decreaseQuality();
 };
 
@@ -65,39 +67,39 @@ function renderLinks(link) {
 //   });
 // }
 
-// function editTitle() {
-//   $('.idea-title').keydown(function (event) {
-//     if(event.keyCode == 13) {
-//       event.preventDefault();
-//       var $input = event.currentTarget.textContent;
-//       var $idea = $(this).closest('.idea');
-//       var ideaParams  = {
-//         idea: {
-//           title: $input
-//         }
-//       }
+function editTitle() {
+  $('.link-title').keydown(function (event) {
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      var $input = event.currentTarget.textContent;
+      var $link = $(this).closest('.link');
+      var linkParams  = {
+        link: {
+          title: $input
+        }
+      }
+      debugger
+      $.ajax({
+        type: 'PUT',
+        url:  '/api/v1/links/'
+        + $link.attr('data-id')
+        + '.json',
+        data: linkParams,
+        success: function(link){
+          $(event.target).blur();
+          updateTitle($link, link.title);
+        },
+        error: function(){
+          console.log('You title cannot be blank.');
+        }
+      });
+    }
+  });
+}
 
-//       $.ajax({
-//         type: 'PUT',
-//         url:  '/api/v1/ideas/'
-//         + $idea.attr('data-id')
-//         + '.json',
-//         data: ideaParams,
-//         success: function(idea){
-//           $(event.target).blur();
-//           updateTitle($idea, idea.title);
-//         },
-//         error: function(){
-//           console.log('You title cannot be blank.');
-//         }
-//       });
-//     }
-//   });
-// }
-
-// function updateTitle(idea, title){
-//   $(idea).find('.idea-title').html(title);
-// }
+function updateTitle(link, title){
+  $(link).find('.link-title').html(title);
+}
 
 // function editBody() {
 //   $('.idea-body').keydown(function (event) {
@@ -133,34 +135,34 @@ function renderLinks(link) {
 //   $(idea).find('.idea-body').html(body);
 // }
 
-// function increaseQuality() {
-//   $('#increase-quality').on('click', function(event){
-//     var $idea = $(this).closest('.idea');
-//     var $quality = $($idea).attr('data-quality');
-//     var thumbsUpMap = {
-//       Genius: "Genius",
-//       Plausible: "Genius",
-//       Swill: "Plausible"
-//     }
+function markRead() {
+  $('#mark-read').on('click', function(event){
+    var $link = $(this).closest('.link');
+    var $read_status = $($link).attr('data-status');
 
-//     var ideaParams = {
-//       idea: {
-//         quality: thumbsUpMap[$quality]
-//       }
-//     }
+    var linkParams = {
+      link: {
+        read_status: true
+      }
+    }
 
-//     $.ajax({
-//       type: 'PUT',
-//       url: '/api/v1/ideas/'
-//       + $idea.attr('data-id')
-//       + '.json',
-//       data: ideaParams,
-//       success: function(idea){
-//         updateQuality($idea, idea.quality);
-//       }
-//     });
-//   });
-// }
+    $.ajax({
+      type: 'PUT',
+      url: '/api/v1/ideas/'
+      + $link.attr('data-id')
+      + '.json',
+      data: linkParams,
+      success: function(link){
+        updateStatus($link, link.read_status);
+      }
+    });
+  });
+}
+
+function updateStatus(link, status){
+  $(link).find('.read_status').html('Status: ' + status);
+  $(link).attr('data-status', status);
+}
 
 // function decreaseQuality() {
 //   $('#decrease-quality').on('click', function(event){
@@ -189,9 +191,4 @@ function renderLinks(link) {
 //       }
 //     });
 //   });
-// }
-
-// function updateQuality(idea, quality){
-//   $(idea).find('.quality').html('Quality: ' + quality);
-//   $(idea).attr('data-quality', quality);
 // }

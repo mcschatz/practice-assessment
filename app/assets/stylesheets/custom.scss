@@ -1,16 +1,16 @@
 $highlight-text-color: #4db6ac;
 
-.idea-title {
+.link-title {
   outline-width: thin;
   outline-color: $highlight-text-color;
 }
 
-.idea-body {
+.link-url {
   outline-width: thin;
   outline-color: $highlight-text-color;
 }
 
-.idea-body:hover {
+.link-url:hover {
   color: $highlight-text-color;
 }
 
@@ -36,7 +36,7 @@ $highlight-text-color: #4db6ac;
   padding-right: 850px;
 }
 
-#delete-idea {
+#delete-link {
   color: $highlight-text-color;
 }
 
@@ -55,6 +55,6 @@ body {
   color: white;
 }
 
-.idea {
+.link {
   color: black;
 }
