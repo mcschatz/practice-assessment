@@ -121,7 +121,7 @@ function changeStatus() {
       unread: "read",
       read: "unread",
     }
-    debugger
+
     var linkParams = {
       link: {
         read_status: changeMap[$read_status]

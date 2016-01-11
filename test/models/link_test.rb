@@ -18,7 +18,7 @@ class LinkTest < ActiveSupport::TestCase
   end
 
   test "a link has a default read_status" do
-    assert_equal false, link.read_status
+    assert_equal "unread", link.read_status
   end
 
   test "a link has a user_id" do
