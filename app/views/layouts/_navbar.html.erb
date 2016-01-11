@@ -1,0 +1,18 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="row">
+      <form class="col s2">
+        <div class="input">
+          <input placeholder="Search" id="search" type="search" required>
+          <label for="search-query"></label>
+        </div>
+      </form>
+      <% if current_user %>
+        Welcome
+        <%= link_to "Logout", logout_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", login_path %>
+      <% end %>
+    </div>
+  </div>
+</nav>
