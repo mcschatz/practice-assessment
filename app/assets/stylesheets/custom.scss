@@ -1,0 +1,60 @@
+$highlight-text-color: #4db6ac;
+
+.idea-title {
+  outline-width: thin;
+  outline-color: $highlight-text-color;
+}
+
+.idea-body {
+  outline-width: thin;
+  outline-color: $highlight-text-color;
+}
+
+.idea-body:hover {
+  color: $highlight-text-color;
+}
+
+.card-title:hover {
+  color: $highlight-text-color;
+}
+
+.btn {
+  background-color: $highlight-text-color;
+  font-weight: bold;
+}
+
+#increase-quality:hover {
+  color: $highlight-text-color;
+}
+
+#increase-quality {
+  padding-right: 15px;
+  padding-top: 10px;
+}
+
+#decrease-quality {
+  padding-right: 850px;
+}
+
+#delete-idea {
+  color: $highlight-text-color;
+}
+
+.nav-wrapper {
+  background-color: #eceff1;
+  color: black;
+}
+
+
+#decrease-quality:hover {
+  color: $highlight-text-color;
+}
+
+body {
+  background-color: #4f174f;
+  color: white;
+}
+
+.idea {
+  color: black;
+}
