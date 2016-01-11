@@ -7,11 +7,11 @@ class UserCreationTest < ActionDispatch::IntegrationTest
     click_link "Sign Up"
     assert_current_path(new_user_path)
 
-    fill_in "Username", with: "mimi"
+    fill_in "Email", with: "mimi@gmail.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
     click_button "Create Account"
 
-    assert page.has_content?("Welcome, Mimi")
+    assert page.has_content?("Welcome")
   end
 end
