@@ -4,4 +4,16 @@ class Api::V1::Links::LinksController < ApplicationController
   def index
     respond_with current_user.links
   end
+
+  def update
+    @link = Link.update(params[:id], link_params)
+    respond_with @link, json: @link
+  end
+
+
+  private
+
+    def link_params
+      params.require(:link).permit(:title, :url, :user_id, :read_status)
+    end
 end

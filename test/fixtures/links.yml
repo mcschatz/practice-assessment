@@ -1,0 +1,14 @@
+one:
+  title: First One
+  url: http://today.turing.io/outlines/2016-01-11/
+  read_status: read
+
+two:
+  title: Second One
+  url: https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/getting_started_with_ajax.md
+  read_status: unread
+
+three:
+  title: Third One
+  url: https://github.com/turingschool/lesson_plans/blob/master/ruby_02-web_applications_with_ruby/authentication.markdown
+  read_status: unread

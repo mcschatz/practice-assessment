@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160111195326) do
   create_table "links", force: :cascade do |t|
     t.string  "url"
     t.string  "title"
-    t.boolean "read_status", default: false
+    t.string  "read_status", default: "unread"
     t.integer "user_id"
   end
 

@@ -1,16 +1,16 @@
 $highlight-text-color: #4db6ac;
 
-.idea-title {
+.link-title {
   outline-width: thin;
   outline-color: $highlight-text-color;
 }
 
-.idea-body {
+.link-url {
   outline-width: thin;
   outline-color: $highlight-text-color;
 }
 
-.idea-body:hover {
+.link-url:hover {
   color: $highlight-text-color;
 }
 
@@ -23,21 +23,13 @@ $highlight-text-color: #4db6ac;
   font-weight: bold;
 }
 
-#increase-quality:hover {
+#change-status:hover {
   color: $highlight-text-color;
 }
 
-#increase-quality {
+#change-status {
   padding-right: 15px;
   padding-top: 10px;
-}
-
-#decrease-quality {
-  padding-right: 850px;
-}
-
-#delete-idea {
-  color: $highlight-text-color;
 }
 
 .nav-wrapper {
@@ -45,16 +37,11 @@ $highlight-text-color: #4db6ac;
   color: black;
 }
 
-
-#decrease-quality:hover {
-  color: $highlight-text-color;
-}
-
 body {
   background-color: #4f174f;
   color: white;
 }
 
-.idea {
+.link {
   color: black;
 }
