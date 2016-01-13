@@ -1,6 +1,12 @@
 $(document).ready(function () {
   getLinks();
   searchLinks();
+
+  $('#read').on('click', function() {
+    $('#data-status').each(function (index, link) {
+      console.log(link);
+    });
+  });
 });
 
 function getLinks(){
@@ -24,7 +30,7 @@ function renderLinks(link) {
     + "</p><p class='status'>Mark as "
     + link.read_status
     + "</p>"
-    + "<i class='material-icons' id='change-status'>thumb_up</i></div></div>"
+    + "<div class='btn' id='change-status'>Change Read Status</div></div>"
   )
   editTitle();
   editUrl();
