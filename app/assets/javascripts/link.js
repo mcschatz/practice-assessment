@@ -3,15 +3,37 @@ $(document).ready(function () {
   searchLinks();
 
   $('#read').on('click', function() {
-    $('.link-unread').hide();
-    $('.link-read').show();
+    $('.read-unread').hide();
+    $('.read-read').show();
   });
 
   $('#unread').on('click', function() {
-    $('.link-unread').show();
-    $('.link-read').hide();
+    $('.read-unread').show();
+    $('.read-read').hide();
+  });
+
+  $('#sort-alphabetical').on('click', function() {
+    var $link = $('.links-list')
+    var $link = $('.link');
   });
 });
+
+function sorted(){
+  $("#sort-alphabetical").on("click", function() {
+      var $links = $('#links-list');
+      var $link = $(".link");
+
+      $link.sort(function(a, b) {
+          var first = $(a).find('.title-editable').text().toLowerCase();
+          var second = $(b).find('.title-editable').text().toLowerCase();
+          return (second < first) ? 1 : 0;
+      });
+
+      $.each($link, function(index, element) {
+          $links.append(element);
+      });
+  });
+}
 
 function getLinks(){
   $.getJSON('/api/v1/links', function(data) {
@@ -23,7 +45,7 @@ function getLinks(){
 
 function renderLinks(link) {
   $('#links-list').prepend(
-    "<div class='card link-" + link.read_status
+    "<div class='card link read-" + link.read_status
     +"' data-id='" + link.id
     + "' data-status='" + link.read_status
     + "'><div class='card-content'>"
