@@ -5,13 +5,17 @@ $highlight-text-color: #4db6ac;
   outline-color: $highlight-text-color;
 }
 
+.read-read {
+  color: blue;
+}
+
+.read-unread {
+  color: black;
+}
+
 .link-url {
   outline-width: thin;
   outline-color: $highlight-text-color;
-}
-
-.link-url:hover {
-  color: $highlight-text-color;
 }
 
 .card-title:hover {
@@ -40,8 +44,4 @@ $highlight-text-color: #4db6ac;
 body {
   background-color: #4f174f;
   color: white;
-}
-
-.link {
-  color: black;
 }

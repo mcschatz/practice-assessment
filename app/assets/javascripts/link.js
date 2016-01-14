@@ -1,7 +1,33 @@
 $(document).ready(function () {
   getLinks();
   searchLinks();
+
+  $('#read').on('click', function() {
+    $('.read-unread').hide();
+    $('.read-read').show();
+  });
+
+  $('#unread').on('click', function() {
+    $('.read-unread').show();
+    $('.read-read').hide();
+  });
 });
+
+function sortAlphabetical() {
+ $('#sort-alphabetical').on('click', function() {
+    var $link  = $('.link');
+
+    $link.sort(function (a, b) {
+      var first = $(a).find('.card-title').text().toLowerCase();
+      var second = $(b).find('.card-title').text().toLowerCase();
+      return (first < second) ? 1 : 0;
+    });
+
+    $.each($link, function(index, element) {
+      $('#links-list').prepend(element);
+    });
+  });
+};
 
 function getLinks(){
   $.getJSON('/api/v1/links', function(data) {
@@ -13,7 +39,8 @@ function getLinks(){
 
 function renderLinks(link) {
   $('#links-list').prepend(
-    "<div class='card link' data-id='" + link.id
+    "<div class='card link read-" + link.read_status
+    +"' data-id='" + link.id
     + "' data-status='" + link.read_status
     + "'><div class='card-content'>"
     + "<span class='card-title'><p contentEditable='true' class='link-title'>"
@@ -21,14 +48,15 @@ function renderLinks(link) {
     + "</p></span>"
     + "<p contentEditable='true' class='link-url'>"
     + link.url
-    + "</p><p class='status'>Mark as "
+    + "</p><p class='status'>Read Status: "
     + link.read_status
     + "</p>"
-    + "<i class='material-icons' id='change-status'>thumb_up</i></div></div>"
+    + "<div class='btn' id='change-status'>Change Read Status</div></div>"
   )
   editTitle();
   editUrl();
   changeStatus();
+  sortAlphabetical();
 };
 
 function searchLinks() {

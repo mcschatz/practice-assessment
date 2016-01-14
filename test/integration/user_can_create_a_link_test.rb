@@ -12,11 +12,12 @@ class UserCanCreateALinkTest < ActionDispatch::IntegrationTest
 
     assert_current_path(links_path)
 
-    fill_in "Title", with: "Winner"
-    fill_in "Url", with: "http://www.panicstream.com/vault/today-in-widespread-panic-history/"
+    fill_in "link[title]", with: "Winner"
+    fill_in "link[url]", with: "http://www.panicstream.com/vault/today-in-widespread-panic-history/"
 
     click_button "Create Link"
 
+    visit links_path
     assert page.has_content?("Winner")
   end
 end
