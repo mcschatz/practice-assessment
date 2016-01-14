@@ -10,14 +10,13 @@ $highlight-text-color: #4db6ac;
   outline-color: $highlight-text-color;
 }
 
-.link-url:hover {
-  color: $highlight-text-color;
-}
-
 .card-title:hover {
   color: $highlight-text-color;
 }
 
+.card {
+  color: black;
+}
 .btn {
   background-color: $highlight-text-color;
   font-weight: bold;

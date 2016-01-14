@@ -3,9 +3,13 @@ $(document).ready(function () {
   searchLinks();
 
   $('#read').on('click', function() {
-    $('#data-status').each(function (index, link) {
-      console.log(link);
-    });
+    $('.link-unread').hide();
+    $('.link-read').show();
+  });
+
+  $('#unread').on('click', function() {
+    $('.link-unread').show();
+    $('.link-read').hide();
   });
 });
 
@@ -19,7 +23,8 @@ function getLinks(){
 
 function renderLinks(link) {
   $('#links-list').prepend(
-    "<div class='card link' data-id='" + link.id
+    "<div class='card link-" + link.read_status
+    +"' data-id='" + link.id
     + "' data-status='" + link.read_status
     + "'><div class='card-content'>"
     + "<span class='card-title'><p contentEditable='true' class='link-title'>"
