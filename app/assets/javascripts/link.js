@@ -11,29 +11,23 @@ $(document).ready(function () {
     $('.read-unread').show();
     $('.read-read').hide();
   });
-
-  $('#sort-alphabetical').on('click', function() {
-    var $link = $('.links-list')
-    var $link = $('.link');
-  });
 });
 
-function sorted(){
-  $("#sort-alphabetical").on("click", function() {
-      var $links = $('#links-list');
-      var $link = $(".link");
+function sortAlphabetical() {
+ $('#sort-alphabetical').on('click', function() {
+    var $link  = $('.link');
 
-      $link.sort(function(a, b) {
-          var first = $(a).find('.title-editable').text().toLowerCase();
-          var second = $(b).find('.title-editable').text().toLowerCase();
-          return (second < first) ? 1 : 0;
-      });
+    $link.sort(function (a, b) {
+      var first = $(a).find('.card-title').text().toLowerCase();
+      var second = $(b).find('.card-title').text().toLowerCase();
+      return (first < second) ? 1 : 0;
+    });
 
-      $.each($link, function(index, element) {
-          $links.append(element);
-      });
+    $.each($link, function(index, element) {
+      $('#links-list').prepend(element);
+    });
   });
-}
+};
 
 function getLinks(){
   $.getJSON('/api/v1/links', function(data) {
@@ -62,6 +56,7 @@ function renderLinks(link) {
   editTitle();
   editUrl();
   changeStatus();
+  sortAlphabetical();
 };
 
 function searchLinks() {
