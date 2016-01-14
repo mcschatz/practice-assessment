@@ -48,7 +48,7 @@ function renderLinks(link) {
     + "</p></span>"
     + "<p contentEditable='true' class='link-url'>"
     + link.url
-    + "</p><p class='status'>Mark as "
+    + "</p><p class='status'>Read Status: "
     + link.read_status
     + "</p>"
     + "<div class='btn' id='change-status'>Change Read Status</div></div>"
