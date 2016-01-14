@@ -10,7 +10,6 @@ class Api::V1::Links::LinksController < ApplicationController
     respond_with @link, json: @link
   end
 
-
   private
 
     def link_params
